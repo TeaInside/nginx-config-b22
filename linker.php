@@ -31,7 +31,7 @@ function rscanr_callback(string $pDir = ".", callable $callback, array $exceptio
 
 rscanr_callback(__DIR__."/sites-available", function (string $f) {
 	if (!is_dir($f)) {
-		print shell_exec("ln -sv {$f} /etc/nginx/sites-enabled 2>&1");
+		print shell_exec("ln -svf {$f} /etc/nginx/sites-enabled 2>&1");
 	}
 });
 
