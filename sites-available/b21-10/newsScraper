@@ -1,0 +1,19 @@
+
+server {
+    listen 57571;
+    listen [::]:57571;
+
+    root /var/app/newsScraper/public;
+
+    index index.php;
+
+    location / {
+        autoindex off;
+        try_files $uri $uri/ =404;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php7.2-fpm.sock;
+    }
+}

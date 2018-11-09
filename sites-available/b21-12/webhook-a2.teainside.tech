@@ -1,0 +1,31 @@
+
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name webhook-a2.teainside.tech;
+    rewrite ^/(.*)$ https://webhook-a2.teainside.tech/$1 permanent;
+}
+
+server {
+    listen 443;
+    listen [::]:443;
+
+    server_name webhook-a2.teainside.tech;
+
+    ssl on;
+    ssl_certificate /var/www/.ssl/@@.teainside.tech/crtca;
+    ssl_certificate_key /var/www/.ssl/@@.teainside.tech/key;
+
+    root /var/www/bot/public;
+
+    location / {
+        autoindex on;
+        try_files $uri $uri/ =404;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php7.2-fpm.sock;
+    }
+}

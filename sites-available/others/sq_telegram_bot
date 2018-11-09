@@ -1,0 +1,94 @@
+
+server {
+	listen 80;
+	listen [::]:80;
+	server_name bot.cryptoveno.com;
+	root /var/app/sq_telebot/public;
+	error_log /var/app/sq_telebot/logs/error_r.log;
+	access_log /var/app/sq_telebot/logs/access_r.log;
+
+	index index.php;
+
+	location / {
+		autoindex on;
+		try_files $uri $uri/ =404;
+	}
+
+	location ~ \.php$ {
+		include snippets/fastcgi-php.conf;
+		fastcgi_pass unix:/run/php/php7.2-fpm.sock;
+	}
+}
+
+server {
+	ssl on;
+	listen 443;
+	listen [::]:443;
+
+	server_name bot.cryptoveno.com;
+	root /var/app/sq_telebot/public;
+	error_log /var/app/sq_telebot/logs/error_r.log;
+	access_log /var/app/sq_telebot/logs/access_r.log;
+
+	ssl_certificate /var/app/ssl/bot.cryptoveno.com/crtca;
+	ssl_certificate_key /var/app/ssl/bot.cryptoveno.com/key;
+
+	index index.php;
+
+	location / {
+		autoindex on;
+		try_files $uri $uri/ =404;
+	}
+
+	location ~ \.php$ {
+		include snippets/fastcgi-php.conf;
+		fastcgi_pass unix:/run/php/php7.2-fpm.sock;
+	}
+}
+
+server {
+	listen 80;
+	listen [::]:80;
+	server_name veno.site;
+	root /var/app/sq_telebot/public;
+	error_log /var/app/sq_telebot/logs/error.log;
+	access_log /var/app/sq_telebot/logs/access.log;
+
+	index index.php;
+
+	location / {
+		autoindex on;
+		try_files $uri $uri/ =404;
+	}
+
+	location ~ \.php$ {
+		include snippets/fastcgi-php.conf;
+		fastcgi_pass unix:/run/php/php7.2-fpm.sock;
+	}
+}
+
+server {
+	ssl on;
+	listen 443;
+	listen [::]:443;
+
+	server_name veno.site;
+	root /var/app/sq_telebot/public;
+	error_log /var/app/sq_telebot/logs/error.log;
+	access_log /var/app/sq_telebot/logs/access.log;
+
+	ssl_certificate /var/app/ssl/veno.site/crtca;
+	ssl_certificate_key /var/app/ssl/veno.site/key;
+
+	index index.php;
+
+	location / {
+		autoindex on;
+		try_files $uri $uri/ =404;
+	}
+
+	location ~ \.php$ {
+		include snippets/fastcgi-php.conf;
+		fastcgi_pass unix:/run/php/php7.2-fpm.sock;
+	}
+}
