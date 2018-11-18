@@ -5,6 +5,9 @@ server {
 
     server_name icetea.teainside.org;
 
+    error_log /var/www/bot-s5/logs/nginx_error.log;
+    access_log /var/www/bot-s5/logs/nginx_access.log;
+
     rewrite ^/(.*)$ https://icetea.teainside.org/$1 permanent;
 }
 
@@ -19,6 +22,8 @@ server {
     ssl_certificate_key /var/www/.ssl/@@.teainside.org/key;
 
     root /var/www/bot-s5/public;
+    error_log /var/www/bot-s5/logs/nginx_error.log;
+    access_log /var/www/bot-s5/logs/nginx_access.log;
 
     index index.php;
 
