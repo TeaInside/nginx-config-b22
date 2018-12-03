@@ -1,0 +1,19 @@
+
+
+server {
+	listen 80;
+	listen [::]:80;
+	
+	server_name api-smesummit.ammarfaizi2.net
+	root /var/www/api-sme;
+	access_log /var/www/api-sme/logs/access.log;
+	error_log /var/www/api-sme/logs/error.log;
+
+	index index.php;
+
+	location ~ \.php$ {
+		include snippets/fastcgi-php.conf;
+		fastcgi_pass unix:/run/php/php7.2-fpm.sock;
+	}
+}
+
