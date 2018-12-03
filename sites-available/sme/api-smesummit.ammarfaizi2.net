@@ -4,7 +4,7 @@ server {
 	listen 80;
 	listen [::]:80;
 	
-	server_name api-smesummit.ammarfaizi2.net
+	server_name api-smesummit.ammarfaizi2.net;
 	root /var/www/api-sm/public;
 	access_log /var/www/api-sme/logs/access.log;
 	error_log /var/www/api-sme/logs/error.log;
