@@ -18,8 +18,8 @@ server {
 	server_name webhook.teainside.org;
 
 	ssl on;
-    ssl_certificate /var/www/.ssl/@@.teainside.org/crtca;
-    ssl_certificate_key /var/www/.ssl/@@.teainside.org/key;
+    ssl_certificate /var/www/.0_ssl/@@.teainside.org/crtca;
+    ssl_certificate_key /var/www/.0_ssl/@@.teainside.org/key;
     
 	root /var/www/webhook.teainside.org/public;
 	error_log /var/www/webhook.teainside.org/logs/nginx_https_error.log;
