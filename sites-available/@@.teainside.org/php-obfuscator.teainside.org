@@ -1,0 +1,38 @@
+
+server {
+    listen 80;
+    listen [::]:80;
+    
+    server_name php-obfuscator.teainside.org;
+
+    error_log /var/www/php-obfuscator.teainside.org/logs/nginx_http_error.log;
+    access_log /var/www/php-obfuscator.teainside.org/logs/nginx_http_access.log;
+
+    rewrite ^/(.*)$ https://php-obfuscator.teainside.org/$1 permanent;
+}
+
+server {
+    listen 443;
+    listen [::]:443;
+
+    server_name php-obfuscator.teainside.org;
+
+    ssl on;
+    ssl_certificate /var/www/.ssl/@@.teainside.org/crtca;
+    ssl_certificate_key /var/www/.ssl/@@.teainside.org/key;
+    
+    root /var/www/php-obfuscator.teainside.org/public;
+    error_log /var/www/php-obfuscator.teainside.org/logs/nginx_https_error.log;
+    access_log /var/www/php-obfuscator.teainside.org/logs/nginx_https_access.log;
+    index index.php;
+
+    location / {
+        autoindex off;
+        try_files $uri $uri/ =404;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php7.2-fpm.sock;
+    }
+}

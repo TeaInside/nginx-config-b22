@@ -2,28 +2,25 @@
 server {
     listen 80;
     listen [::]:80;
-
-    server_name icetea.teainside.org;
-
-    error_log /var/www/bot-s5/logs/nginx_error.log;
-    access_log /var/www/bot-s5/logs/nginx_access.log;
-
-    rewrite ^/(.*)$ https://icetea.teainside.org/$1 permanent;
+    server_name teainside-bot-s5.teainside.org;
+    error_log /var/www/bot-s5/logs/nginx_http_error.log;
+    access_log /var/www/bot-s5/logs/nginx_http_access.log;
+    rewrite ^/(.*)$ https://teainside-bot-s5.teainside.org/$1 permanent;
 }
 
 server {
     listen 443;
     listen [::]:443;
 
-    server_name icetea.teainside.org;
+    server_name teainside-bot-s5.teainside.org;
 
     ssl on;
     ssl_certificate /var/www/.ssl/@@.teainside.org/crtca;
     ssl_certificate_key /var/www/.ssl/@@.teainside.org/key;
 
     root /var/www/bot-s5/public;
-    error_log /var/www/bot-s5/logs/nginx_error.log;
-    access_log /var/www/bot-s5/logs/nginx_access.log;
+    error_log /var/www/teainside-bot-s5.teainside.org/logs/nginx_https_error.log;
+    access_log /var/www/teainside-bot-s5.teainside.org/logs/nginx_https_access.log;
 
     index index.php;
 

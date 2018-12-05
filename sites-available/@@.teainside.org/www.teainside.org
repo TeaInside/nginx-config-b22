@@ -2,8 +2,11 @@
 server {
 	listen 80;
 	listen [::]:80;
+	
 	server_name teainside.org www.teainside.org;
 
+	error_log /var/www/www.teainside.org/logs/nginx_http_error.log;
+	access_log /var/www/www.teainside.org/logs/nginx_http_access.log;
 	rewrite ^/(.*)$ https://www.teainside.org/$1 permanent;
 }
 
@@ -12,10 +15,12 @@ server {
 	listen [::]:443;
 
 	server_name teainside.org;
-
+	
 	ssl on;
-	ssl_certificate /var/www/.ssl/@@.teainside.tech/crtca;
-	ssl_certificate_key /var/www/.ssl/@@.teainside.tech/key;
+    ssl_certificate /var/www/.ssl/@@.teainside.org/crtca;
+    ssl_certificate_key /var/www/.ssl/@@.teainside.org/key;
+	error_log /var/www/www.teainside.org/logs/nginx_https_error.log;
+	access_log /var/www/www.teainside.org/logs/nginx_https_access.log;
 
 	rewrite ^/(.*)$ https://www.teainside.org/$1 permanent;
 }
@@ -31,8 +36,8 @@ server {
 	ssl_certificate_key /var/www/.ssl/@@.teainside.tech/key;
 
 	root /var/www/www.teainside.org/public;
-	error_log /var/www/www.teainside.org/logs/error.log;
-	access_log /var/www/www.teainside.org/logs/access.log;
+	error_log /var/www/www.teainside.org/logs/nginx_https_error.log;
+	access_log /var/www/www.teainside.org/logs/nginx_https_access.log;
 
 	index index.php;
 

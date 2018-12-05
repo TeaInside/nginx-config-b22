@@ -5,10 +5,10 @@ server {
 	listen [::]:80;
 	
 	server_name api-smesummit.ammarfaizi2.net;
+	
 	root /var/www/api-sme/public;
-	access_log /var/www/api-sme/logs/access.log;
-	error_log /var/www/api-sme/logs/error.log;
-
+	error_log /var/www/api-smesummit.ammarfaizi2.net/logs/nginx_http_error.log;
+	access_log /var/www/api-smesummit.ammarfaizi2.net/logs/nginx_http_access.log;
 	index index.php;
 
 	location / {
