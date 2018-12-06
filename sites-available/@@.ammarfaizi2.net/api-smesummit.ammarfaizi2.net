@@ -6,7 +6,7 @@ server {
 	
 	server_name api-smesummit.ammarfaizi2.net;
 	
-	root /var/www/api-sme/public;
+	root /var/www/api-smesummit.ammarfaizi2.net/public;
 	error_log /var/www/api-smesummit.ammarfaizi2.net/logs/nginx_http_error.log;
 	access_log /var/www/api-smesummit.ammarfaizi2.net/logs/nginx_http_access.log;
 	index index.php;
